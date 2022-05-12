@@ -13,14 +13,7 @@ function addContacts() {
 }
 
 contacts.addEventListener("scroll", (e) => {
-  const items = Array.from(contacts.getElementsByClassName("contact"));
-  const itemOffsets = items.map((item) => item.offsetTop);
-  const topItemIndex = itemOffsets.findIndex(
-    (offset) => contacts.scrollTop - offset <= -18
-  );
-  if (topItemIndex !== -1) {
-    stickyHeader.textContent = items[topItemIndex].textContent;
-  }
+  stickyHeader.textContent = Math.ceil(contacts.scrollTop / 18);//в FireFox 22, а не 18
 });
 
 addContacts();
